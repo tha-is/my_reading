@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+
 .hidden {
     display: none;
+}
+
+#navbar-title {
+  font-family: "Edu NSW ACT Cursive", cursive;
+}
+
+button {
+  font-family: "Iceland", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: lowercase;
 }
