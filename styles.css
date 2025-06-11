@@ -7,11 +7,16 @@
 
 #navbar-title {
   font-family: "Edu NSW ACT Cursive", cursive;
+  color: rgb(182, 175, 175);
 }
 
-button {
+button, form {
   font-family: "Iceland", sans-serif;
   font-weight: 400;
   font-style: normal;
   text-transform: lowercase;
+}
+
+.task-form {
+    height: 400px;
 }

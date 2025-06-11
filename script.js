@@ -4,19 +4,24 @@ const cancelBtn = document.getElementById('cancel-btn');
 const tasksContainer = document.getElementById('tasks-container');
 const titleInput = document.getElementById('title-input');
 const dateStart = document.getElementById('date-start');
-const dateEnd = document.getElementById('date-end');
 const descriptionInput = document.getElementById('description-input');
 
-const confirmCloseDialog = document.getElementById('confirm-close-dialog');
 const discardBtn = document.getElementById('discard-btn');
 
 const taskForm = document.getElementById('task-form');
 
 const bookBtn = document.getElementById('bookBtn');
 const sagaBtn = document.getElementById('sagaBtn');
+
+const confirmCloseDialog = document.getElementById('confirm-close-dialog');
+
 const formContainer = document.getElementById('form-container');
 
-// Função para anexar o event listener ao botão de fechar
+const taskData = [];
+let currentTask = {};
+
+
+// ao clicar no botão de fechar o formulario ele aparece um MODAL
     function setupCloseButton() {
     const currentCloseTaskFormBtn = document.getElementById('close-task-form-btn');    
         if (currentCloseTaskFormBtn) {
@@ -24,31 +29,40 @@ const formContainer = document.getElementById('form-container');
             confirmCloseDialog.showModal(); // quando clicar no x vai subir um modal confirmando a ação
         });
     }
-}  
+}
 
-// Função para anexar o event listener ao botão cancelar
+// Botão cancelar
     function setupCancelButton() {
         if (confirmCloseDialog) {
             confirmCloseDialog.addEventListener('click', () => {
             confirmCloseDialog.close();
-            })
-        }
+        });
     }
+}
 
-// Função para anexar o event listener ao botão descartar
-    function setupDiscardButton() {
+// Botão descartar
+    function setupDiscardButton() {  
         const discardBtn = document.getElementById('discard-btn');
         if (discardBtn) {
             discardBtn.addEventListener('click', () => {
-            confirmCloseDialog.close();
-            formContainer.classList.toggle('hidden');
-        }) // quando clicar em descartar e nao tiver nenhuma info cadastrada esconde o form
-    }}
+            formContainer.classList.add('hidden');
+        }); // quando clicar em descartar e nao tiver nenhuma info cadastrada esconde o form
+    }
+}
+
+// Botão adc titulo de livro nas sagas
+    function adcBtn () {
+    const sagaInput = getElementById('saga-input');
+    const order = 0
+    sagaBtn.addEventListener('click', () => {
+        order++
+    })
+    }
 
 bookBtn.addEventListener('click', () => {
     formContainer.innerHTML =
-      `<div class="d-flex flex-column align-items-center">
-        <form class="task-form" id="task-form"> 
+      `<div class="d-flex flex-column align-items-center small">
+        <form class="task-form border overflow-auto p-1" id="task-form"> 
 
 <div class="p-2 d-flex justify-content-end">
     <input class="close-task-form-btn" 
@@ -90,12 +104,13 @@ bookBtn.addEventListener('click', () => {
                     </div>`;
                 setupCloseButton();
                 setupDiscardButton();
+                formContainer.classList.remove('hidden');
                 });
 
   sagaBtn.addEventListener('click', () => {
     formContainer.innerHTML =
-      `<div class="d-flex flex-column align-items-center">
-        <form class="task-form" id="task-form"> 
+      `<div class="d-flex flex-column align-items-center small" data-spy="scroll"  data-offset="0">
+        <form class="task-form border overflow-auto" id="task-form"> 
 
 <div class="p-2 d-flex justify-content-end">
     <input class="close-task-form-btn" 
@@ -108,7 +123,7 @@ bookBtn.addEventListener('click', () => {
 <div class="p-2">
     <label 
     class="task-form-label col-form-label col-form-label-sm" 
-    for="saga-input">Saga</label>    
+    for="saga-input">Nome da saga</label>    
         <input required type="text" 
         class="form-control form-control-sm" 
         id="saga-input" 
@@ -119,22 +134,26 @@ bookBtn.addEventListener('click', () => {
     <label 
     class="task-form-label col-form-label col-form-label-sm" 
     for="title-input">Título do livro:</label>    
+    
+    <div class="d-flex flex-row column-gap-1">
         <input required type="text" 
         class="form-control form-control-sm" 
         id="title-input" 
         value=""/>
+
+      <input type="button"
+      class="form-control form-control-sm"
+      id="saga-input" value="+"/>
       </div>
-
-      <button>+</button>
-
+</div>
 <div class="p-2">    
-    <label 
-    class="task-form-label col-form-label col-form-label-sm" 
-    for="date-start">Data de início</label>
-      <input type="date" 
-      class="form-control form-control-sm" 
-      id="date-start" 
-      value="" />
+        <label 
+            class="task-form-label col-form-label col-form-label-sm" 
+            for="date-start">Data de início</label>
+        <input type="date" 
+        class="form-control form-control-sm" 
+        id="date-start" 
+        value="" />
     </div>
 
 <div class="p-2">
@@ -149,10 +168,9 @@ bookBtn.addEventListener('click', () => {
                     </div>`;
     setupCloseButton();
     setupDiscardButton();
+    formContainer.classList.remove('hidden');
 })
 
-const taskData = [];
-let currentTask = {};
 
 taskForm.addEventListener('submit', (e) => {
     e.preventDefault()

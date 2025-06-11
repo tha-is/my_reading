@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container todo-app small">
+  <div class="container d-flex flex-column row-gap-5 todo-app small">
     <!------------------------------------------------->
-    <nav class="navbar border">
+    <nav class="navbar border shadow-sm">
       <div class="container-fluid">
         <a href="#" class="navbar-brand" id="navbar-title">my-reading</a>
           <div class="d-flex flex-column gap-1">
@@ -22,7 +22,7 @@
     </nav>
     <div id="form-container"></div>
         <!---------------------------descartar livros---------------------->
-                <dialog id="confirm-close-dialog">
+                <dialog id="confirm-close-dialog" >
                   <form method="dialog">
                     <p class="discard-message-text">Descartar livros?</p>
                     <div class="confirm-close-dialog-btn-container">
